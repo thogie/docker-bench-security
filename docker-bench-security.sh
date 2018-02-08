@@ -107,6 +107,7 @@ main () {
   for test in tests/*.sh
   do
      . ./"$test"
+	
   done
 
   if [ -z "$check" ]; then
