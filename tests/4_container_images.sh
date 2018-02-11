@@ -11,6 +11,8 @@ check_4() {
 
 # 4.1
 check_4_1() {
+  containerScore=0
+  containerScore=$((containerScore + 1))
  # check_4_1="4.1  - Ensure a user for the container has been created"
  # totalChecks=$((totalChecks + 1))
 
@@ -42,7 +44,7 @@ check_4_1() {
 	logjson "BuiltAt" "$builtAt"
 	info "StartedAt $startedAt"
 	logjson "StartedAt" "$startedAt"
-	info "ImageUsed:" "$imageUsed"
+	info "ImageUsed: $imageUsed"
 	logjson "ImageUsed" "$imageUsed"
 
        fail=1
@@ -56,6 +58,7 @@ check_4_1() {
       if [ $fail -eq 0 ]; then
         pass "$check_4_1"
         logjson "4.1" "PASS"
+	containerScore=$((containerScore + 1))
         currentScore=$((currentScore + 1))
       else
         currentScore=$((currentScore - 1))
@@ -63,6 +66,7 @@ check_4_1() {
 
 	#check_4_2	
 	check_4_2="4.2  - Ensure that containers use trusted base images"
+	containerScore=$((containerScore + 1))
   	totalChecks=$((totalChecks + 1))
   	note "$check_4_2"
   	logjson "4.2" "NOTE"
@@ -91,6 +95,7 @@ check_4_1() {
   if [ "x$DOCKER_CONTENT_TRUST" = "x1" ]; then
     pass "$check_4_5"
     logjson "4.5" "PASS"
+	containerScore=$((containerScore + 1))
     currentScore=$((currentScore + 1))
   else
     warn "$check_4_5"
@@ -118,6 +123,7 @@ check_4_1() {
       if [ $fail -eq 0 ]; then
     	pass "$check_4_6"
     	logjson "4.6" "PASS"
+	containerScore=$((containerScore + 1))
     	currentScore=$((currentScore + 1))
   	else
     	currentScore=$((currentScore - 1))
@@ -142,6 +148,7 @@ check_4_1() {
 	if [ $fail -eq 0 ]; then
    	 pass "$check_4_7"
     	logjson "4.7" "PASS"
+	containerScore=$((containerScore + 1))
     	currentScore=$((currentScore + 1))
   	else
    	 currentScore=$((currentScore + 0))
@@ -208,6 +215,7 @@ check_4_1() {
       if [ $fail -eq 0 ]; then
       pass "$check_5_1"
       logjson "5.1" "PASS"
+      containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
       else
       currentScore=$((currentScore - 1))
@@ -231,6 +239,7 @@ check_4_1() {
  	if [ $fail -eq 0 ]; then
       pass "$check_5_2"
       logjson "5.2" "PASS"
+      containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   	else
       currentScore=$((currentScore - 1))
@@ -257,6 +266,7 @@ check_4_1() {
   if [ $fail -eq 0 ]; then
       pass "$check_5_3"
       logjson "5.3" "PASS"
+      containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   else
       currentScore=$((currentScore - 1))
@@ -278,6 +288,7 @@ check_4_1() {
   if [ $fail -eq 0 ]; then
       pass "$check_5_4"
       logjson "5.4" "PASS"
+      containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   else
       currentScore=$((currentScore - 1))
@@ -319,6 +330,7 @@ check_4_1() {
   if [ $fail -eq 0 ]; then
       pass "$check_5_5"
       logjson "5.5" "PASS"
+      containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   else
       currentScore=$((currentScore - 1))
@@ -353,6 +365,7 @@ check_5_6="5.6  - Ensure ssh is not run within containers"
 
   if [ $fail -eq 0 ]; then
       pass "$check_5_6"
+containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   else
       currentScore=$((currentScore - 1))
@@ -379,6 +392,7 @@ check_5_6="5.6  - Ensure ssh is not run within containers"
   if [ $fail -eq 0 ]; then
       pass "$check_5_7"
       logjson "5.7" "PASS"
+	containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   else
       currentScore=$((currentScore - 1))
@@ -432,6 +446,7 @@ check_5_6="5.6  - Ensure ssh is not run within containers"
   if [ $fail -eq 0 ]; then
       pass "$check_5_10"
       logjson "5.10" "PASS"
+	containerScore=$((containerScore + 1))
       currentScore=$((currentScore + 1))
   else
       currentScore=$((currentScore - 1))
@@ -873,7 +888,7 @@ check_5_11="5.11 - Ensure CPU priority is set appropriately on the container"
 
     done
   
-
+     info "Containerscore: $containerScore"
   fi
   # Make the loop separator go back to space
   set +f; unset IFS

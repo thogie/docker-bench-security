@@ -68,9 +68,9 @@ container_images() {
   check_4_1
   #check_4_2
   #check_4_3
-  check_4_4
-  check_4_5
-  check_4_6
+  #check_4_4
+  #check_4_5
+  #check_4_6
   #check_4_7
   #check_4_8
   #check_4_9
@@ -78,10 +78,10 @@ container_images() {
   #check_4_11
 }
 
-container_runtime() {
-  check_5
-  check_running_containers
-  check_5_1
+#container_runtime() {
+  #check_5
+  #check_running_containers
+  #check_5_1
   #check_5_2
   #check_5_3
   #check_5_4
@@ -112,7 +112,7 @@ container_runtime() {
   #check_5_29
   #check_5_30
   #check_5_31
-}
+#}
 
 docker_security_operations() {
   check_6
@@ -144,7 +144,7 @@ cis() {
   docker_daemon_configuration
   docker_daemon_files
   container_images
-  container_runtime
+  #container_runtime
   docker_security_operations
   docker_swarm_configuration
 }
