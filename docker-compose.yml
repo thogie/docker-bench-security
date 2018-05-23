@@ -1,6 +1,7 @@
 version: '2.1'
 services:
   node:
+    build: .
     image: node-hello-world:latest
     ports:
       - "172.17.0.1:49153:8080"
